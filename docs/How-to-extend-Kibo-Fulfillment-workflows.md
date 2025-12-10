@@ -1,10 +1,10 @@
 # How to Extend Kibo Fulfillment
 
 ### Overview
-The following will allow you to author custom fulfillment workflows using a fork of this repository, upload & install them thru Kibo Development Center, 
+The following will allow you to author custom fulfillment workflows using a fork of this repository, upload & install them thru Kibo Development Center,
 enable them thru the API and execute them via the Kibo Fulfiller application.
 
-__NOTE:__ This documentation instructs use of the __jBPM Business Central__ application for authoring and testing BPMN workflows locally. An IDE such as Eclipse is an alternative for process authoring and is documented at [jbpm.org](https://www.jbpm.org). Click the __Read Documentation__ link on the jBPM home page and search the referenced document for __Eclipse Developer Tools__.
+__NOTE:__ This documentation instructs use of the __jBPM Business Central__ application for authoring and testing BPMN workflows locally. An IDE such as Eclipse is an alternative for process authoring and is documented at [jBPM 7 documentation](https://docs.jbpm.org/7.74.1.Final/jbpm-docs/html_single/). Search the documentation for __Eclipse Developer Tools__.
 
 1. [Setup jBPM Server with Business Central for local development](#setup-jbpm-server-with-business-central-for-local-development)
 1. [Setup for Kibo Development Center remote synchronization](#setup-for-kibo-development-center-remote-synchronization)
@@ -24,7 +24,7 @@ __NOTE:__ This documentation instructs use of the __jBPM Business Central__ appl
 1. [Syncing local jBPM Business Central repository with custom fork repository](#syncing-local-jbpm-business-central-repository-with-custom-fork-repository)
 
 ### Setup jBPM Server with Business Central for local development
-The jBPM Server distribution is the easiest way to start with jBPM. The included Business Central application is useful for authoring processes. To get up and running quickly use the jBPM single distribution which can be downloaded at [jbpm.org](https://www.jbpm.org). Look at the [Getting Started](https://www.jbpm.org/learn/gettingStartedUsingSingleZipDistribution.html) guide to get yourself familiar with Business Central.
+The jBPM Server distribution is the easiest way to start with jBPM. The included Business Central application is useful for authoring processes. To get up and running quickly use the jBPM single distribution which can be downloaded at [jBPM 7 downloads](https://downloads.jboss.org/jbpm/release/7.74.1.Final/jbpm-server-7.74.1.Final-dist.zip). Look at the [Getting Started](https://docs.jbpm.org/7.74.1.Final/jbpm-docs/html_single/#_jbpmgettingstarted) guide to get yourself familiar with Business Central.
 
 By default, Business Central is available at http://localhost:8080/business-central
 
@@ -129,7 +129,7 @@ When you fork a project you can configure Git to pull changes from the original,
     > upstream  https://github.com/KiboSoftware/kibo-fulfillment-workflows.git (push)
     ```
 
-Now, you can keep your fork synced with the __upstream__ repository with a few Git commands. 
+Now, you can keep your fork synced with the __upstream__ repository with a few Git commands.
 
 For more information, see "[Syncing custom fork with the upstream repository](#syncing-custom-fork-with-the-upstream-repository)"
 
@@ -168,7 +168,7 @@ The forked business assets project can be easily imported into Business Central 
     ```
     $ git checkout -b master
     Switched to a new branch 'master'
-    --- 
+    ---
     $ git branch
       develop
     * master
@@ -177,7 +177,7 @@ The forked business assets project can be easily imported into Business Central 
 
 1. Log in to Business Central and go to __Menu > Design > Projects__
 
-1. Select `Import Project` from the _Add Project_ pull-down and enter the filesystem location of the project git repo within the `Repository URL` field. 
+1. Select `Import Project` from the _Add Project_ pull-down and enter the filesystem location of the project git repo within the `Repository URL` field.
     ```
     file://{filesystem location of forked repository}
     ```
@@ -224,7 +224,7 @@ The forked business assets project can be easily imported into Business Central 
     > upstream  https://github.com/KiboSoftware/kibo-fulfillment-workflows.git (fetch)
     > upstream  https://github.com/KiboSoftware/kibo-fulfillment-workflows.git (push)
     ```
- 
+
 1. Pull or fetch your custom business assets from jBPM Business Central to your forked git repository.
 
     ```
@@ -245,19 +245,19 @@ The forked business assets project can be easily imported into Business Central 
     $ git checkout develop
     $ git pull origin develop
     ```
-   
+
 1. Rebase your updated local __master__ branch commits on the synchronized __develop__ branch.
     ```
     $ git checkout master
     $ git rebase develop
     ```
-   
+
 1. Squash all dedicated jBPM Business Central changes in the __develop__ branch of your fork.
     ```
     $ git checkout develop
     $ git merge --squash master
     ```
-    
+
 1. Add & commit the merged changes to the __develop__ branch and then push to your fork on GitHub.
     ```
     $ git add -A
@@ -271,7 +271,7 @@ The forked business assets project can be easily imported into Business Central 
     $ git reset --hard develop
     $ git push -f jbpm master
     ```
-   
+
 1. With your custom business assets now part of the forked project source tree, Maven commands can be used to build and publish the KJAR artifact to a Maven repository - without using the standalone jBPM server.
     ```
     $ mvn clean install
@@ -293,8 +293,8 @@ You can use __Process Definitions__ and __Process Instances__ perspectives of Bu
     For example:
     ```
     $ yo mozu-actions
-    
-     ,,,,,,,,,,,,,,,,,,        ,,,,,,      ,,,,,,,,,,,,  ,,,      ,,, 
+
+     ,,,,,,,,,,,,,,,,,,        ,,,,,,      ,,,,,,,,,,,,  ,,,      ,,,
      SSSSSSSSSSSSSSSSSSSQ   ;QSSSSSSSSSQ,  SSSSSSSSSSSS  SSSQ    ]SSSQ
      SSS#""""@SSS""""YSSSQ  SSSS"""""QSSS  ^T777T@SSS#^  SSSQ    ]SSSQ
      SSS[    @SSS     SSS[  SSSb     ]SSS      ,QSSSN    SSSQ    ]SSSQ
@@ -307,21 +307,21 @@ You can use __Process Definitions__ and __Process Instances__ perspectives of Bu
      |   contains Actions. You'll get a directory structure, action  |
      |             file skeletons, and a test framework!             |
      '---------------------------------------------------------------'
-    
+
     ? Application package name (letters, numbers, dashes): YOUR_DEVCENTER_ACCOUNT_KEY.YOUR_DEVCENTER_APP_NAME
-    ? Short description: 
+    ? Short description:
     ? Initial version: 1.0.0
     ? Developer Center Application Key for this Application: YOUR_DEVCENTER_ACCOUNT_KEY.YOUR_DEVCENTER_APP_NAME.1.0.0.Release
     ? Enter your Developer Account login email: YOUR_DEVCENTER_ACCOUNT_EMAIL_ADDRESS
     ? Developer Account password: [hidden]
     >> Looking up developer accounts...
-    
+
     ? Select a developer account for YOUR_DEVCENTER_ACCOUNT_EMAIL_ADDRESS: Your Developer Account (9999)
     ? Choose a test framework: None/Manual
     ? Enable actions on install? (This will add a custom function to the embedded.platform.applications.install action.) Yes
-    
+
     Unit tests are strongly recommended. If you prefer a framework this generator does not support, or framework-free tests, you can still use the mozu-action-simulator module to simulate a server-side environment for your action implementations.
-    
+
     ...
     ? Choose domains: platform*applications
     ? Actions for domain platform*applications
@@ -408,7 +408,7 @@ curl --request GET 'http://t123.mozu.com/api/commerce/admin/locationGroupConfigu
 --header 'x-vol-tenant: 123' \
 --header 'x-vol-site: 456' \
 --header 'Authorization: Bearer *******'
-``` 
+```
 Set custom BPM configuration for a Location Group:
 ```
 curl --request PUT 'http://t123.mozu.com/api/commerce/admin/locationGroupConfiguration/2' \
@@ -495,10 +495,10 @@ For more information, see "[Syncing a fork](https://help.github.com/en/github/co
     ```
     $ git checkout master
     > Switched to branch 'master'
-    
+
     $ git reset --hard develop
     > HEAD is now at a5fff3d Merge remote-tracking branch 'upstream/develop' into develop
-    
+
     $ git push -f jbpm master
     > Counting objects: 60, done.
     > Delta compression using up to 8 threads.

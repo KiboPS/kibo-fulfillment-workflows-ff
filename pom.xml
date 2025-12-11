@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>KUPT</groupId>
   <artifactId>KUPT.bpm_fulfillment_extn_ff</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>kjar</packaging>
   <name>KUPT.bpm_fulfillment_extn_ff</name>
   <description></description>

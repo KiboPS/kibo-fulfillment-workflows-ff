@@ -4,14 +4,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>KUPT</groupId>
   <artifactId>KUPT.bpm_fulfillment_extn_ff</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>kjar</packaging>
   <name>KUPT.bpm_fulfillment_extn_ff</name>
   <description></description>
+
   <organization>
     <name>Kibo Software</name>
     <url>http://www.kibocommerce.com</url>
   </organization>
+
   <developers>
     <developer>
       <id>kibocommerce.com</id>
@@ -20,6 +22,7 @@
       <organizationUrl>http://www.kibocommerce.com</organizationUrl>
     </developer>
   </developers>
+
   <properties>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <sonar.projectName>Kibo.FulfillmentWorkflows</sonar.projectName>
@@ -37,7 +40,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jacocoOutputDirectory>${project.build.directory}/jacoco-aggregate</jacocoOutputDirectory>
     <sonar.coverage.jacoco.xmlReportPaths>${jacocoOutputDirectory}/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-    <sonar.coverage.exclusions>${sonar.tests}/**/*</sonar.coverage.exclusions>
+    <sonar.coverage.exclusions>
+      ${sonar.tests}/**/*
+    </sonar.coverage.exclusions>
     <sonar.language>java</sonar.language>
     <java.version>8</java.version>
     <sonar.organization>kibo-ucp</sonar.organization>
@@ -46,6 +51,7 @@
     <sonar.scm.provider>git</sonar.scm.provider>
     <sonar.scm.disabled>true</sonar.scm.disabled>
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.kie</groupId>
@@ -77,12 +83,12 @@
       <version>1.4.10</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-test</artifactId>
-      <version>${version.org.kie}</version>
-      <scope>test</scope>
-    </dependency>
+      <dependency>
+          <groupId>org.jbpm</groupId>
+          <artifactId>jbpm-test</artifactId>
+          <version>${version.org.kie}</version>
+          <scope>test</scope>
+      </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib-jdk8</artifactId>
@@ -96,6 +102,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -105,18 +112,20 @@
         <extensions>true</extensions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
+        <configuration>
+          <release>${java.version}</release>
+        </configuration>
         <executions>
           <execution>
             <id>compile</id>
           </execution>
         </executions>
-        <configuration>
-          <release>${java.version}</release>
-        </configuration>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
@@ -155,6 +164,12 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.9</version>
+        <configuration>
+          <excludes>
+            <exclude>**/*Test*</exclude>
+          </excludes>
+          <outputDirectory>${jacocoOutputDirectory}</outputDirectory>
+        </configuration>
         <executions>
           <execution>
             <id>prepare-agent</id>
@@ -175,24 +190,21 @@
             </configuration>
           </execution>
         </executions>
-        <configuration>
-          <excludes>
-            <exclude>**/*Test*</exclude>
-          </excludes>
-          <outputDirectory>${jacocoOutputDirectory}</outputDirectory>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
-        <version>3.7.0.1746</version>
+        <version>3.9.1.2184</version>
       </plugin>
     </plugins>
   </build>
+
   <profiles>
     <profile>
       <id>nexus-deploy</id>
-      <activation />
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <distributionManagement>
         <snapshotRepository>
           <id>kibo-businessautomation-snapshots</id>
